@@ -1,0 +1,31 @@
+﻿<Window x:Class="NoPathNoSourceBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoPathNoSourceBinding"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"  
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <clr:String>测试字符串，无需绑定Path,Source本身就是数据无需填写，在Xaml中可以不写. 在C#中必须写.</clr:String>
+        </Grid.DataContext>
+
+        <Label Content="无Path无Source"/>
+        <TextBox Grid.Column="1" Text="{Binding Mode=OneWay}"/>
+    </Grid>
+</Window>

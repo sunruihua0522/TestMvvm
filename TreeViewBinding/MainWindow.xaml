@@ -1,0 +1,55 @@
+﻿<Window x:Class="TreeViewBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeViewBinding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+            <XmlDataProvider x:Key="xdp" XPath="FileSystem/Folder">
+                <x:XData>
+                    <FileSystem xmlns="">
+                        <Folder name="Books" size="30">
+                            <Folder name="Programming" size="24">
+                                <Folder name="Windows" size="45">
+                                    <Folder name="WPF" size="90">
+                                        
+                                    </Folder>
+                                </Folder>
+                            </Folder>
+                        </Folder>
+                        <Folder name="Tools" size="789">
+                            <Folder name="Python" size="345"/>
+                            <Folder name="Lua" size="123"/>
+                            <Folder name="C#" size="990"/>
+                        </Folder>
+                    </FileSystem>
+                </x:XData>
+            </XmlDataProvider>
+            <XmlDataProvider x:Key="xmlFile" Source="C:\Users\Ricky Sun\source\repos\MvvmLight1\TreeViewBinding\bin\Debug\SystemFolder.xml" XPath="FileSystem/Folder"/>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="绑定TreeView测试，两种方法，一种是在xaml中定义资源，一种是从文件中加载"/>
+        <GridSplitter HorizontalAlignment="Stretch" Height="5" Grid.Row="1" Background="LightBlue"/>
+        <TreeView Grid.Row="2" ItemsSource="{Binding Source={StaticResource xmlFile}}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding XPath=Folder}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="image/45-start.png" Width="40" Height="40" Margin="5"/>
+                        <TextBlock Height="30" Width="100" Text="{Binding XPath=@name}" VerticalAlignment="Center" FontSize="22" Margin="5"/>
+                        <TextBlock Height="30" Width="100" Text="{Binding XPath=@size}" VerticalAlignment="Center" FontSize="22" Margin="5"/>
+                        <Button Height="30" Width="80" Content="{Binding XPath=@name}" Margin="5"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+</Window>

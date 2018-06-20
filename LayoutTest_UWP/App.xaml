@@ -1,0 +1,21 @@
+﻿<Application x:Class="LayoutTest_UWP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:LayoutTest_UWP.ViewModel"
+             xmlns:ignore="http://www.galasoft.ch/ignore"
+             xmlns:local="using:LayoutTest_UWP"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d ignore"
+             RequestedTheme="Light"
+             xmlns:Converter="using:LayoutTest_UWP.Converter">
+
+    <Application.Resources>
+        
+        <!--Global View Model Locator-->
+        <vm:ViewModelLocator x:Key="Locator"
+                             d:IsDataSource="True" />
+        <Converter:String2Boolean x:Key="String2Boolean"/>
+
+    </Application.Resources>
+</Application>

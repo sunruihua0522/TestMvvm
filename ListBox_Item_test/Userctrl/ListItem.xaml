@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ListBox_Item_test.Userctrl.ListItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ListBox_Item_test.Userctrl"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Name}" FontSize="20" Foreground="Orange" VerticalAlignment="Center"/>
+        <Button Grid.Column="1"  Content="{Binding ID}" FontSize="20" Click="Button_Click" Margin="10" FontFamily="隶书">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6590A8" Offset="0.076"/>
+                    <GradientStop Color="#FF4B89AC" Offset="0.498"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect Color="#FF4476E2" BlurRadius="10"/>
+            </Button.Effect>
+        </Button>
+        <TextBlock  Grid.Column="2" Text="{Binding Age,Converter={StaticResource Int2Text}}" FontSize="20" Margin="40,1,1,1" VerticalAlignment="Center" Foreground="{Binding Age,Converter={StaticResource Age2Brush}}"/>
+        <Image Grid.Column="3" Source="{Binding Age, Converter={StaticResource Age2Image}}" Margin="20,1,1,1"/>
+    </Grid>
+</UserControl>
