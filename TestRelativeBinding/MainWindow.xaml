@@ -1,0 +1,48 @@
+﻿<Window x:Class="TestRelativeBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+        xmlns:local="clr-namespace:TestRelativeBinding"
+        mc:Ignorable="d ignore"
+        Height="300"
+        Width="300"
+        Title="MVVM Light Application"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        >
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding SelectedItem.Name,ElementName=listbox}"/>
+        <Button Grid.Row="1" Command="{Binding CommandCLick}"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <dxprg:PropertyGridControl Grid.Column="1" SelectedObject="{Binding SelectedItem,ElementName=listbox}"/>
+            <ListBox Name="listbox" Grid.Row="2" ItemsSource="{Binding StuCollection}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <local:MyListBoxItem/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
