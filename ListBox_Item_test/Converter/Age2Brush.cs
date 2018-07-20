@@ -15,6 +15,7 @@ namespace ListBox_Item_test.Converter
         {
             
             int age = Int16.Parse(value.ToString());
+           
             if (age < 30)
                 return new SolidColorBrush(Color.FromRgb(255, 0, 0));
             else if (age >= 30 && age < 70)

@@ -14,8 +14,9 @@ namespace ContentControl
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             FrameworkElement element = container as FrameworkElement;
-            MyModel bSelectUi1 = item as MyModel;
-            if (bSelectUi1.SelectUi1)
+            if (item == null)
+                return null;
+            if ((bool)item)
             {
                 return (DataTemplate)element.TryFindResource("UI1");
             }

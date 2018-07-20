@@ -6,22 +6,38 @@
         xmlns:local="clr-namespace:ContentControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Model}">
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="UI1">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="image/NG.png" Margin="10"/>
-                    <Label Content="UI111111" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                    <Button Content="UI111111"  Margin="10" Command="{Binding UI111Command}"/>
                 </StackPanel>
             </DataTemplate>
             <DataTemplate x:Key="UI2">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="image/OK.png" Margin="10"/>
-                    <Label Content="UI22222" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                    <Button Content="UI22222"  Margin="10" Command="{Binding UI222Command}"/>
                 </StackPanel>
             </DataTemplate>
-            <local:TemplateSelecter x:Key="DataSelecter"/>
+            <DataTemplate x:Key="UI3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="LightBlue"/>
+                    <Rectangle Fill="LawnGreen" Grid.Column="1"/>
+                    <Rectangle Fill="LightCyan" Grid.Row="1" Grid.Column="0"/>
+                    <Rectangle Fill="LightCoral" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </DataTemplate>
+            <local:TemplateSelecter x:Key="TempleteSelecter"/>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -32,6 +48,6 @@
             <Button Content="UI1" Width="200" Margin="10" Click="Button_Click"/>
             <Button Content="UI2" Width="200" Margin="10" Click="Button_Click_1"/>
         </StackPanel>
-        <ContentControl Grid.Row="1" Content="{Binding}" ContentTemplateSelector="{StaticResource DataSelecter}"/>
+        <ContentControl Grid.Row="1" Content="{Binding Model.SelectUi1}" ContentTemplateSelector="{StaticResource TempleteSelecter}"/>
     </Grid>
 </Window>

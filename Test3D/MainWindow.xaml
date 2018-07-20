@@ -14,6 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+       
         <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010">
             <dxr:RibbonControl.ToolbarItems>
                 <dxb:BarButtonItemLink BarItemName="newItem"/>

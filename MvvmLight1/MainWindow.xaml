@@ -9,7 +9,6 @@
         Width="300"
         Title="MVVM Light Application"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-   
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,7 +18,6 @@
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot">
-
         <TextBlock FontSize="36"
                    FontWeight="Bold"
                    Foreground="Purple"

@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ContentControl.Model;
+using GalaSoft.MvvmLight.Command;
+
 namespace ContentControl
 {
     /// <summary>
@@ -22,8 +24,6 @@ namespace ContentControl
     public partial class MainWindow : Window ,INotifyPropertyChanged
     {
         private MyModel _model = new MyModel();
-        private MyModel _model1 = new MyModel() { SelectUi1 = true };
-
         public MyModel Model
         {
             set
@@ -47,12 +47,31 @@ namespace ContentControl
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Model = new MyModel() { SelectUi1 = true };
+            //Model = new MyModel() { SelectUi1 = true };
+            Model.SelectUi1 = true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Model = new MyModel() { SelectUi1 = false };
+            //Model = new MyModel() { SelectUi1 = false };
+            Model.SelectUi1 = false;
+        }
+        public RelayCommand UI111Command
+        {
+            get { return new RelayCommand(()=>
+            {
+                Console.WriteLine(1111);
+            } ); }
+        }
+        public RelayCommand U222Command
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    Console.WriteLine(2222);
+                });
+            }
         }
     }
 }
