@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ContentControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+        DataContext="{Binding Main,Source={StaticResource Locator} }">
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="UI1">
@@ -21,22 +21,6 @@
                     <Button Content="UI22222"  Margin="10" Command="{Binding UI222Command}"/>
                 </StackPanel>
             </DataTemplate>
-            <DataTemplate x:Key="UI3">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Fill="LightBlue"/>
-                    <Rectangle Fill="LawnGreen" Grid.Column="1"/>
-                    <Rectangle Fill="LightCyan" Grid.Row="1" Grid.Column="0"/>
-                    <Rectangle Fill="LightCoral" Grid.Row="1" Grid.Column="1"/>
-                </Grid>
-            </DataTemplate>
             <local:TemplateSelecter x:Key="TempleteSelecter"/>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -45,9 +29,9 @@
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="UI1" Width="200" Margin="10" Click="Button_Click"/>
-            <Button Content="UI2" Width="200" Margin="10" Click="Button_Click_1"/>
+            <Button Content="UI1" Width="200" Margin="10" Command="{Binding ChooseUIComand}" CommandParameter="UI1"/>
+            <Button Content="UI2" Width="200" Margin="10" Command="{Binding ChooseUIComand}" CommandParameter="UI2"/>
         </StackPanel>
-        <ContentControl Grid.Row="1" Content="{Binding Model.SelectUi1}" ContentTemplateSelector="{StaticResource TempleteSelecter}"/>
+        <ContentControl Grid.Row="1" Content="{Binding VM}"  ContentTemplateSelector="{StaticResource TempleteSelecter}"/>
     </Grid>
 </Window>

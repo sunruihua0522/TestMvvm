@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace ContentControl.ViewModel
 {
@@ -19,16 +20,41 @@ namespace ContentControl.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
+        private ViewModelBase vm=null;
+        private VM1 vm1=new VM1();
+        private VM2 vm2 = new VM2();
+
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+
+        }
+        public ViewModelBase VM
+        {
+            get
+            {
+                return vm;
+            }
+            set
+            {
+                if (vm != value)
+                {
+                    vm = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        public RelayCommand<string> ChooseUIComand
+        {
+            get { return new RelayCommand<string>(str=> {
+                if (str == "UI1")
+                {
+                    VM = vm1;
+                }
+                else if (str == "UI2")
+                {
+                    VM = vm2;
+                }
+            }); }
         }
     }
 }

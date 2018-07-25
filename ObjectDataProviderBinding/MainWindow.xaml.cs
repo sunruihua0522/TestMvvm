@@ -36,6 +36,7 @@ namespace ObjectDataProviderBinding
 
         private AutoResetEvent grabEvent = new AutoResetEvent(false);
         private int nInternal=1000;
+        private HObject TempImage=new HObject();
         public MainWindow()
         {
             InitializeComponent();
@@ -111,18 +112,28 @@ namespace ObjectDataProviderBinding
                     if (ret)
                         continue;
                     nInternal = 200;
+                    if (TempImage != null)
+                    {
+                        TempImage.Dispose();
+                        TempImage = null;
+                    }
                     HOperatorSet.GrabImage(out ho_Image, hv_AcqHandle);
-                    HOperatorSet.DispObj(ho_Image, halconCtrl.HalconWindow);
-                    HOperatorSet.DispObj(ho_Image, halconCtrl.HalconWindow);
+                    TempImage = ho_Image.SelectObj(1);
                     ho_Image.Dispose();
+                    HOperatorSet.GenEmptyObj(out HObject region);
+                    HOperatorSet.DispObj(TempImage, halconCtrl.HalconWindow);
+                    //HOperatorSet.DispObj(ho_Image, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(reg, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(reg1, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(rect, halconCtrl.HalconWindow);
+
                 }
+                //break ;
             }
             reg.Dispose();
             reg1.Dispose();
             rect.Dispose();
+        
         }
 
         private void TextBox1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
