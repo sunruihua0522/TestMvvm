@@ -108,10 +108,7 @@ namespace ObjectDataProviderBinding
             {
                 lock (_lock)
                 {
-                    bool ret = grabEvent.WaitOne(50);
-                    if (ret)
-                        continue;
-                    nInternal = 200;
+                    
                     if (TempImage != null)
                     {
                         TempImage.Dispose();
@@ -121,8 +118,11 @@ namespace ObjectDataProviderBinding
                     TempImage = ho_Image.SelectObj(1);
                     ho_Image.Dispose();
                     HOperatorSet.GenEmptyObj(out HObject region);
+
+                    bool ret = grabEvent.WaitOne(1);
+                    if (ret)
+                        continue;
                     HOperatorSet.DispObj(TempImage, halconCtrl.HalconWindow);
-                    //HOperatorSet.DispObj(ho_Image, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(reg, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(reg1, halconCtrl.HalconWindow);
                     HOperatorSet.DispObj(rect, halconCtrl.HalconWindow);
@@ -162,6 +162,7 @@ namespace ObjectDataProviderBinding
 
         private void halconCtrl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            
             lock (_lock)
             {
                 grabEvent.Set();          
@@ -186,5 +187,6 @@ namespace ObjectDataProviderBinding
             }
 
         }
+
     }
 }

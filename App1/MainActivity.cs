@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using static App1.Resource;
 
 namespace App1
 {
@@ -13,8 +12,7 @@ namespace App1
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Layout.Main);
-          
+            SetContentView(Resource.Layout.Main);
         }
     }
 }

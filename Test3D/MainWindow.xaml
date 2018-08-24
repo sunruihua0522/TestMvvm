@@ -6,7 +6,7 @@
         xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
-        Title="MainWindow" Height="450" Width="725"
+        Title="{Binding Count}" Height="450" Width="725"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-       
+   
         <dxr:RibbonControl Grid.Row="0" RibbonStyle="Office2010">
             <dxr:RibbonControl.ToolbarItems>
                 <dxb:BarButtonItemLink BarItemName="newItem"/>
@@ -38,71 +38,175 @@
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
-        <dxc:Chart3DControl x:Name="Chart3D" AggregateFunction="None" AspectRatio="1,1,1" Grid.Row="1">
-            <dxc:Chart3DControl.ZAxis>
-                <dxc:ZAxis3D>
-                    <dxc:ZAxis3D.Title>
-                        <dxc:AxisTitle Content="Z Axis"/>
-                    </dxc:ZAxis3D.Title>
-                </dxc:ZAxis3D>
-            </dxc:Chart3DControl.ZAxis>
-            <dxc:Chart3DControl.YAxis>
-                <dxc:YAxis3D>
-                    <dxc:YAxis3D.CacheMode>
-                        <BitmapCache/>
-                    </dxc:YAxis3D.CacheMode>
-                    <dxc:YAxis3D.Title>
-                        <dxc:AxisTitle Content="Y Axis"/>
-                    </dxc:YAxis3D.Title>
-                </dxc:YAxis3D>
-            </dxc:Chart3DControl.YAxis>
-            <dxc:Chart3DControl.XAxis>
-                <dxc:XAxis3D GridLinesBrush="#FF564AB4">
-                    <dxc:XAxis3D.Label>
-                        <dxc:AxisLabel/>
-                    </dxc:XAxis3D.Label>
-                    <dxc:XAxis3D.Title>
-                        <dxc:AxisTitle Content="X Axis"/>
-                    </dxc:XAxis3D.Title>
-                </dxc:XAxis3D>
-            </dxc:Chart3DControl.XAxis>
-            <dxc:Chart3DControl.Palette>
-                <dxc:SlipstreamPalette />
-            </dxc:Chart3DControl.Palette>
-            <dxc:Chart3DControl.Legends>
-                <dxc:Legend BorderThickness="0" HorizontalPosition="Right" VerticalPosition="Top" Background="{x:Null}" />
-            </dxc:Chart3DControl.Legends>
-            <dxc:Series3DStorage>
-                <dxc:Series3D DisplayName="数据">
-                    <dxc:SeriesPoint3DDataSourceAdapter 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <dxc:Chart3DControl x:Name="Chart3D" AggregateFunction="None" AspectRatio="1,1,1" Grid.Row="1">
+                <dxc:Chart3DControl.ZAxis>
+                    <dxc:ZAxis3D>
+                        <dxc:ZAxis3D.Title>
+                            <dxc:AxisTitle Content="Z Axis"/>
+                        </dxc:ZAxis3D.Title>
+                    </dxc:ZAxis3D>
+                </dxc:Chart3DControl.ZAxis>
+                <dxc:Chart3DControl.YAxis>
+                    <dxc:YAxis3D>
+                        <dxc:YAxis3D.CacheMode>
+                            <BitmapCache/>
+                        </dxc:YAxis3D.CacheMode>
+                        <dxc:YAxis3D.Title>
+                            <dxc:AxisTitle Content="Y Axis"/>
+                        </dxc:YAxis3D.Title>
+                    </dxc:YAxis3D>
+                </dxc:Chart3DControl.YAxis>
+                <dxc:Chart3DControl.XAxis>
+                    <dxc:XAxis3D GridLinesBrush="#FF564AB4">
+                        <dxc:XAxis3D.Label>
+                            <dxc:AxisLabel/>
+                        </dxc:XAxis3D.Label>
+                        <dxc:XAxis3D.Title>
+                            <dxc:AxisTitle Content="X Axis"/>
+                        </dxc:XAxis3D.Title>
+                    </dxc:XAxis3D>
+                </dxc:Chart3DControl.XAxis>
+                <dxc:Chart3DControl.Palette>
+                    <dxc:SlipstreamPalette />
+                </dxc:Chart3DControl.Palette>
+                <dxc:Chart3DControl.Legends>
+                    <dxc:Legend BorderThickness="0" HorizontalPosition="Right" VerticalPosition="Top" Background="{x:Null}" />
+                </dxc:Chart3DControl.Legends>
+                <dxc:Series3DStorage>
+                    <dxc:Series3D DisplayName="数据">
+                        <dxc:SeriesPoint3DDataSourceAdapter 
                         DataSource="{Binding MyData}"
                         XArgumentDataMember="X"
                         YArgumentDataMember="Y"
                         ValueDataMember="Z"/>
-                    <dxc:Series3D.View>
-                        <dxc:SurfaceSeriesView VisualizationMode="Grid">
-                            <dxc:SurfaceSeriesView.FillStyle>
-                                <dxc:GradientFillStyle LegendTextPattern="{}{V:F6}">
-                                    <dxc:GradientFillStyle.ColorStops>
-                                        <dxc:ColorStop Color="#B42B01" Offset="100%" />
-                                        <dxc:ColorStop Color="#C74919" Offset="84%" />
-                                        <dxc:ColorStop Color="#E17B31" Offset="70%" />
-                                        <dxc:ColorStop Color="#FBA756" Offset="56%" />
-                                        <dxc:ColorStop Color="#FDCC8A" Offset="42%" />
-                                        <dxc:ColorStop Color="#B4E095" Offset="28%" />
-                                        <dxc:ColorStop Color="#7DCDA8" Offset="14%" />
-                                        <dxc:ColorStop Color="#69A8CC" Offset="0%" />
-                                    </dxc:GradientFillStyle.ColorStops>
-                                </dxc:GradientFillStyle>
-                            </dxc:SurfaceSeriesView.FillStyle>
-                        </dxc:SurfaceSeriesView>
-                    </dxc:Series3D.View>
-                </dxc:Series3D>
-            </dxc:Series3DStorage>
-        </dxc:Chart3DControl>
+                        <dxc:Series3D.View>
+                            <dxc:SurfaceSeriesView VisualizationMode="Grid">
+                                <dxc:SurfaceSeriesView.FillStyle>
+                                    <dxc:GradientFillStyle LegendTextPattern="{}{V:F6}">
+                                        <dxc:GradientFillStyle.ColorStops>
+                                            <dxc:ColorStop Color="#B42B01" Offset="100%" />
+                                            <dxc:ColorStop Color="#C74919" Offset="84%" />
+                                            <dxc:ColorStop Color="#E17B31" Offset="70%" />
+                                            <dxc:ColorStop Color="#FBA756" Offset="56%" />
+                                            <dxc:ColorStop Color="#FDCC8A" Offset="42%" />
+                                            <dxc:ColorStop Color="#B4E095" Offset="28%" />
+                                            <dxc:ColorStop Color="#7DCDA8" Offset="14%" />
+                                            <dxc:ColorStop Color="#69A8CC" Offset="0%" />
+                                        </dxc:GradientFillStyle.ColorStops>
+                                    </dxc:GradientFillStyle>
+                                </dxc:SurfaceSeriesView.FillStyle>
+                            </dxc:SurfaceSeriesView>
+                        </dxc:Series3D.View>
+                    </dxc:Series3D>
+                </dxc:Series3DStorage>
+            </dxc:Chart3DControl>
+            <dxc:ChartControl Grid.Column="1">
+                <dxc:ChartControl.Palette>
+                    <dxc:InAFogPalette/>
+                </dxc:ChartControl.Palette>
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend HorizontalPosition="Right" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                </dxc:ChartControl.Legend>
+                <dxc:ChartControl.Legends>
+                    <dxc:Legend HorizontalPosition="Left" VerticalPosition="Top" Orientation="Horizontal" ItemVisibilityMode="AutoGeneratedAndCustom" />
+                </dxc:ChartControl.Legends>
+                <dxc:XYDiagram2D>
+                    <dxc:XYDiagram2D.AxisX>
+                        <dxc:AxisX2D>
+                            <dxc:AxisX2D.Title>
+                                <dxc:AxisTitle Content="X" FontSize="12"/>
+                            </dxc:AxisX2D.Title>
+                        </dxc:AxisX2D>
+                    </dxc:XYDiagram2D.AxisX>
+                    <dxc:XYDiagram2D.AxisY>
+                        <dxc:AxisY2D>
+                            <dxc:AxisY2D.Title>
+                                <dxc:AxisTitle Content="Y" FontSize="12"/>
+                            </dxc:AxisY2D.Title>
+                        </dxc:AxisY2D>
+                    </dxc:XYDiagram2D.AxisY>
+                    <!--<dxc:LineSeries2D DisplayName="CH 1" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"  CrosshairLabelPattern="{}{A:F3}nm, {V:F2}dB"/>-->
+                    <dxc:PointSeries2D DisplayName="Point" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"/>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl>
+            <dxc:ChartControl Grid.Column="1" Grid.Row="1" MouseDoubleClick="ChartControl_MouseDoubleClick">
+                <dxc:ChartControl.Palette>
+                    <dxc:InAFogPalette/>
+                </dxc:ChartControl.Palette>
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend HorizontalPosition="Right" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                </dxc:ChartControl.Legend>
+                <dxc:ChartControl.Legends>
+                    <dxc:Legend HorizontalPosition="Left" VerticalPosition="Top" Orientation="Horizontal" ItemVisibilityMode="AutoGeneratedAndCustom" />
+                </dxc:ChartControl.Legends>
+                <dxc:XYDiagram2D>
+                    <dxc:XYDiagram2D.AxisX>
+                        <dxc:AxisX2D>
+                            <dxc:AxisX2D.Title>
+                                <dxc:AxisTitle Content="X" FontSize="12"/>
+                            </dxc:AxisX2D.Title>
+                        </dxc:AxisX2D>
+                    </dxc:XYDiagram2D.AxisX>
+                    <dxc:XYDiagram2D.AxisY>
+                        <dxc:AxisY2D>
+                            <dxc:AxisY2D.WholeRange>
+                                <dxc:Range MinValue="{Binding MinData}" MaxValue="100"/>
+                            </dxc:AxisY2D.WholeRange>
+                            <dxc:AxisY2D.Title>
+                                <dxc:AxisTitle Content="Y" FontSize="12"/>
+                            </dxc:AxisY2D.Title>
+                        </dxc:AxisY2D>
+                    </dxc:XYDiagram2D.AxisY>
+                    <!--<dxc:LineSeries2D DisplayName="CH 1" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"  CrosshairLabelPattern="{}{A:F3}nm, {V:F2}dB"/>-->
+                    <dxc:PointSeries2D DisplayName="Point" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"/>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl>
+            <dxc:ChartControl Grid.Row="0">
+                <dxc:ChartControl.Palette>
+                    <dxc:InAFogPalette/>
+                </dxc:ChartControl.Palette>
+                <dxc:ChartControl.Legend>
+                    <dxc:Legend HorizontalPosition="Right" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                </dxc:ChartControl.Legend>
+                <dxc:ChartControl.Legends>
+                    <dxc:Legend HorizontalPosition="Left" VerticalPosition="Top" Orientation="Horizontal" ItemVisibilityMode="AutoGeneratedAndCustom" />
+                </dxc:ChartControl.Legends>
+                <dxc:XYDiagram2D>
+                    <dxc:XYDiagram2D.AxisX>
+                        <dxc:AxisX2D>
+                            <dxc:AxisX2D.Title>
+                                <dxc:AxisTitle Content="X" FontSize="12"/>
+                            </dxc:AxisX2D.Title>
+                        </dxc:AxisX2D>
+                    </dxc:XYDiagram2D.AxisX>
+                    <dxc:XYDiagram2D.AxisY>
+                        <dxc:AxisY2D>
+                            <dxc:AxisY2D.Title>
+                                <dxc:AxisTitle Content="Y" FontSize="12"/>
+                            </dxc:AxisY2D.Title>
+                        </dxc:AxisY2D>
+                    </dxc:XYDiagram2D.AxisY>
+                    <!--<dxc:LineSeries2D DisplayName="CH 1" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"  CrosshairLabelPattern="{}{A:F3}nm, {V:F2}dB"/>-->
+                    <dxc:PointSeries2D DisplayName="Point" DataSource="{Binding MyData2D}" ValueDataMember="Y" ArgumentDataMember="X"/>
+                </dxc:XYDiagram2D>
+            </dxc:ChartControl>
+        </Grid>
+        
+       
+        
+        
         <dxr:RibbonStatusBarControl Grid.Row="2">
             <dxr:RibbonStatusBarControl.RightItems>
-                <dxb:BarButtonItem x:Name="printItem" Content="Print" Glyph="{dx:DXImage Image=Print_16x16.png}"/>
+                <dxb:BarButtonItem x:Name="printItem" Content="{Binding Count}" Glyph="{dx:DXImage Image=Print_16x16.png}"/>
             </dxr:RibbonStatusBarControl.RightItems>
         </dxr:RibbonStatusBarControl>
     </Grid>

@@ -1,8 +1,7 @@
-﻿using System.Data;
-using System.Windows;
-using TestReport.ViewModel;
+﻿using System.Windows;
+using TestCommadTarget.ViewModel;
 
-namespace TestReport
+namespace TestCommadTarget
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -16,8 +15,6 @@ namespace TestReport
         {
             InitializeComponent();
             Closing += (s, e) => ViewModelLocator.Cleanup();
-         
-
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
-using System.Data;
-using TestReport.Model;
+using GalaSoft.MvvmLight.Command;
+using System;
+using TestCommadTarget.Model;
 
-namespace TestReport.ViewModel
+namespace TestCommadTarget.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -10,10 +11,8 @@ namespace TestReport.ViewModel
     /// See http://www.mvvmlight.net
     /// </para>
     /// </summary>
-
     public class MainViewModel : ViewModelBase
     {
-        private DataTable _dt=new DataTable();
         private readonly IDataService _dataService;
 
         /// <summary>
@@ -56,32 +55,12 @@ namespace TestReport.ViewModel
 
                     WelcomeTitle = item.Title;
                 });
-
-            Data.Columns.Add("ID");
-            Data.Columns.Add("Name");
-            Data.Columns.Add("Age");
-
-            DataRow dr = Data.NewRow();
-            dr["ID"] = "1233";
-            dr["Name"] = "Lucy";
-            dr["Age"] = "33";
-            Data.Rows.Add(dr);
         }
 
-        public DataTable Data
-        {
-            get
-            {
-                return _dt;
-            }
-            set
-            {
-                if (_dt != value)
-                {
-                    _dt = value;
-                    RaisePropertyChanged();
-                }
-            }
+        public RelayCommand<string> TestCommand {
+            get { return new RelayCommand<string>(str=> {
+                Console.WriteLine(str);
+            }); }
         }
     }
 }

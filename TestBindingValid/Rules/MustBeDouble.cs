@@ -22,7 +22,7 @@ namespace TestBindingValid.Rules
                     {
                         if (d > Min && d < Max)
                             return new ValidationResult(true, "");
-                        return new ValidationResult(false, "请输入0-100之内的数字");
+                        return new ValidationResult(false, $"请输入{Min}-{Max}之内的数字");
                     }
                     return new ValidationResult(false, "请输入正确的数字");
                 case "int":
@@ -30,7 +30,7 @@ namespace TestBindingValid.Rules
                     {
                         if (i > Min && i < Max)
                             return new ValidationResult(true, "");
-                        return new ValidationResult(false, "请输入100-1100之内的数字");
+                        return new ValidationResult(false, $"请输入{Min}-{Max}之内的数字");
                     }
                     return new ValidationResult(false, "请输入正确的数字");
             }
